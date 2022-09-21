@@ -1,0 +1,29 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Building Blocks for Statistics"
+  author: "andrés castro araújo"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - part: cm.qmd
+      chapters: 
+        - cm-introduction.qmd
+        - cm-nhst.qmd
+        - cm-modeling.qmd
+        - cm-visualizing.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: lumen
+    mainfont: Amiri
+    monofont: Fira Code
+    fontsize: 1em
+
+
+

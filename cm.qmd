@@ -1,0 +1,11 @@
+# Correlation Matrices
+
+This section follows the structure of @hadd2020.
+
+-   What are correlation matrices? Some math here.
+
+-   How to test correlation matrices? Some null hypothesis testing here.
+
+-   How to model correlation matrices? Some PCA, CFA, and SEM here.
+
+-   How to visualize correlation matrices? This section contains some stuff about geometry and **correlation space.**
