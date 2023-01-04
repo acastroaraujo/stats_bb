@@ -1,0 +1,61 @@
+# Probability
+
+The difference between *probability* and *statistical inference* is succinctly described by @wasserman2004:
+
+Probability
+
+:   *Given a data generating process, what are the properties of the outcomes?*
+
+**Statistical Inference**
+
+:   *Given the outcomes, what can we say about the process that generated the data?*
+
+There are at least three common interpretations of **probability**.
+
+The **classical interpretation** is based on the idea of *equally likely outcomes*---i.e., if the outcome of some process must be $m$ of $n$ different outcomes, and these are equally likely to occur, then the probability of $m$ is $m/n$. This interpretation is silly because the idea of "equally likely outcome" is based on the concept of probability that we are trying to define, it's a tautology.
+
+<aside>
+
+*Most interesting outcomes cannot be assumed to be equally likely!*
+
+</aside>
+
+An extension of this interpretation leads to an interpretation of probability as a **calculus for counting** that allows us to represent the plausibility of different events. This is also known as the **naive** definition of probability. It is very limited because it requires equally likely outcomes and can't handle *uncountable* or infinite sample spaces (e.g., areas, continuous time measurements). Better interpretations of probability build upon the same mathematical foundations.
+
+According to the **frequentist interpretation,** the probability that some specific outcome of a process will be obtained can be interpreted to mean *the relative frequency* with which that outcome would be obtained if the process were *repeated a large number of times* and *under similar conditions*. In other words, probability describes the **proportions** of specific events that can be expected to occur among many realizations of a random generative process. It\'s all about *long-term frequencies.* Probabilities are the long-term frequency properties of things that we can measure repeatedly. This interpretation is not silly, but it only applies to problems in which there can be (at least in principle) a large number of similar repetitions of a certain process. *Many important problems are not of this kind.*
+
+<aside>
+
+*What number of times is large enough?*
+
+*The conditions must not be \"exactly\" the same; otherwise the outcomes would be exactly the same!*
+
+</aside>
+
+The **Bayesian interpretation** takes a different direction. Here, we treat "randomness" as *a property of information,* not of or the world. Almost nothing in the world is actually random. Presumably, we could predict everything exactly if we had more information. Thus, *we use randomness to describe **uncertainty** in the face of incomplete knowledge.* This is why this is also known as the **subjective interpretation** of probability.
+
+> It will make some readers uncomfortable to suggest that there is more than one way to define "probability." Aren\'t mathematical concepts uniquely correct? They are not. Once you adopt some set of premises, or axioms, everything does follow logically in mathematical systems. But the axioms are open to debate and interpretation. So not only is there \"Bayesian\" and \"frequentist\" probability, but there are different versions of Bayesian probability even, relying upon different arguments to justify the approach.
+>
+> @mcelreath2020 [pp. 12-3]
+
+Regardless of the ongoing controversy about its interpretation, probability was established as a mathematical theory by Kolmogorov in the early 20th century. And although the different interpretations seem incompatible, the *calculus of probability* applies equally well no matter which interpretation one prefers. Thus, probability is simply a mathematical tool that allows us allows us to quantify uncertainty and randomness in principled ways.
+
+Axioms
+
+file:///Users/acastroaraujo/Documents/Notes/Math/Probability.html
+
+file:///Users/acastroaraujo/Documents/Columbia/3.%20Fall/BDA%20-%20Gelman/Notes\_-\_BDA.html
+
+file:///Users/acastroaraujo/Documents/Columbia/1.%20Fall/Probability%20Theory/Other_Stuff.html
+
+file:///Users/acastroaraujo/Documents/Columbia/1.%20Fall/Probability%20Theory/Probability.html
+
+file:///Users/acastroaraujo/Documents/Old%20Repositories/SelfStudy/Probability-and-Statistics/1-Probability.html
+
+https://acastroaraujo-notebooks.netlify.app/posts/2021-01-27-probability-notes/
+
+https://betanalpha.github.io/assets/case_studies/probability_theory.html#12_sigma_algebras
+
+Add separate entry for:
+
+https://acastroaraujo-notebooks.netlify.app/posts/2021-01-31-counting-methods/

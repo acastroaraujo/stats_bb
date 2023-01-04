@@ -1,0 +1,3 @@
+## MCMC
+
+all from the rizzo book

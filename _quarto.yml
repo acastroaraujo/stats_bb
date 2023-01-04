@@ -3,11 +3,20 @@ project:
   output-dir: docs
 
 book:
-  title: "Building Blocks for Statistics"
+  title: "Building Blocks"
   author: "andrés castro araújo"
   date: last-modified
   chapters:
     - index.qmd
+    - part: prob.qmd
+      chapters: 
+        - prob-counting.qmd
+        - prob-random-vars.qmd
+    - part: rn.qmd
+      chapters:
+        - rn-methods.qmd
+        - rn-integration.qmd
+        - rn-mcmc.qmd
     - part: cm.qmd
       chapters: 
         - cm-introduction.qmd

@@ -1,0 +1,63 @@
+# Counting Methods
+
+*Taken from @blitzstein2019*
+
+The probabilities of events can be calculated by counting the number of outcomes in events as a *proportion* of the number of outcomes in the sample space.
+
+**Counting Methods:**
+
+Suppose one event can occur in $m$ ways and that another can occur in $n$ ways.
+
+The *sum rule*. As with the union of events, if the two events are disjoint, then there are $m + n$ outcomes or possible ways in which *either one* can happen.
+
+The *multiplication rule*. If the two events happen in succession, then there will be $m \times n$ possible outcomes or ways in which they could happen together. In other words, independent possibilities, when considered conjointly, multiply in number.
+
+*Permutations*. When the events are *not independent*, we use factorial notation. The number of different permutations of $n$ *distinct* elements in a set is defined using factorial notation $n!$
+
+When we take a subset $k$ of *distinct* elements, we use:
+
+$$\underbrace{P(n, k)}_\text{k-permutation} = \frac{n!}{(n - k)!}$$
+
+Conversely, when a subset $n_1$ of the events in $n$ consists of *indistinct* elements, we use $\frac{n!}{n_1!}$ instead. Furthermore, we can have many subsets of *indistinct* elements:
+
+$$\frac{n!}{n_1!n_2!...n_r!} \hspace{1cm} \text{s.t} \hspace{0.5cm} n = n_1 + n_2 + ... + n_r$$
+
+Note that if all possible outcomes are distinct (i.e. each $n_i = 1$) then we are back at $n!$
+
+Any distinct ordering of a set is called a *permutation* of that set.
+
+**Example**: If the letters $s$, $s$, $s$, $t$, $t$, $t$, $i$, $i$, $a$, $c$ are arranged in a random order, what is the probability that they will spell the word "statistics"?
+
+$$\frac{10!}{3!3!2!1!1!} = 50400$$
+
+Because there's only one arrangement in which the letters spell "statistics", the probability is $\frac{1}{50400}$.
+
+*Combinations*. A combination is an unordered arrangement of $k$ objects taken from a set of $n$ objects. It is defined by the *binomial coefficient* $\binom{n}{k}$ or the "$n$ choose $k$" operation.
+
+$$\binom{n}{k} = \frac{n!}{(n-k)! k!}$$
+
+This turns out to be the number of possible samples of size $k$ drawn *without replacement* from a population of size $n$.
+
+If we wish to divide a set of $n$ distinct elements into $k$ different subsets of size $n_1 + n_2 + ... + n_k = n$, then the number of given ways in which this can be done is given by the *multinomial coefficient*. This coefficient has already been used in the "statistics" example.
+
+$$\binom{n}{n_1, ..., n_k} = \frac{n!}{n_1!n_2!...n_k!}$$
+
+## The Sampling Table
+
+The sampling table gives the number of possible samples of size $k$ out of a population of size $n$, under various assumptions about how the sample is collected.
+
+```{r, echo=FALSE}
+Ordered <- c("$n^k$", "$\\frac{n}{(n-k)!}$")
+Unordered <- c("$\\binom{n + k - 1}{k}$", "$\\binom{n}{k}$")
+output <- data.frame(Ordered, Unordered)
+rownames(output) <- c("With replacement", "Without replacement")
+
+library(magrittr)
+
+output %>% 
+  knitr::kable("html", digits = 3) %>% 
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    bootstrap_options = "bordered"
+    )
+```

@@ -1,0 +1,15 @@
+# Methods
+
+## The Inverse Transform Method
+
+## The Acceptance-Rejection Method
+
+## Transformations
+
+## Sums and Mixtures
+
+http://www.columbia.edu/\~ks20/4404-Sigman/4404-Notes-ITM.pdf
+
+https://stephens999.github.io/fiveMinuteStats/inverse_transform_sampling.html
+
+https://en.wikipedia.org/wiki/Inverse_transform_sampling
