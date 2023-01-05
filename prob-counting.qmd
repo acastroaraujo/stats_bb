@@ -4,13 +4,11 @@
 
 The probabilities of events can be calculated by counting the number of outcomes in events as a *proportion* of the number of outcomes in the sample space.
 
-**Counting Methods:**
-
 Suppose one event can occur in $m$ ways and that another can occur in $n$ ways.
 
-The *sum rule*. As with the union of events, if the two events are disjoint, then there are $m + n$ outcomes or possible ways in which *either one* can happen.
+The **sum rule**. As with the union of events, if the two events are disjoint, then there are $m + n$ outcomes or possible ways in which *either one* can happen.
 
-The *multiplication rule*. If the two events happen in succession, then there will be $m \times n$ possible outcomes or ways in which they could happen together. In other words, independent possibilities, when considered conjointly, multiply in number.
+The **multiplication rule**. If the two events happen in succession, then there will be $m \times n$ possible outcomes or ways in which they could happen together. In other words, independent possibilities, when considered conjointly, multiply in number.
 
 *Permutations*. When the events are *not independent*, we use factorial notation. The number of different permutations of $n$ *distinct* elements in a set is defined using factorial notation $n!$
 
