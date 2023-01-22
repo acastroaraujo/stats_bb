@@ -1,0 +1,155 @@
+# Introduction
+
+There are three formal components that together fully describe a random generative process: $\Omega, S, P$.
+
+The **sample space** ($\Omega$) or the set of all possible outcomes of a random generative process. Individual outcomes (or sets of outcomes) are usually denoted as $w \in \Omega$, and they can take many forms.
+
+For example:
+
+-   A single roll of a six-sided die.
+
+$$\Omega = \{1, 2, 3, 4, 5, 6\}$$
+
+-   A single roll of two six-sided dice.
+
+$$
+\Omega = \{(x, y) \in \mathbb Z^2 : 1 \leq x \leq 6,\ 1 \leq y \leq 6 \}
+$$
+
+-   A coin flip.
+
+$$\Omega = \{H, T\}$$
+
+An **event** is a well-defined subset of $\Omega$, usually denoted by capital Roman letters (e.g. $A \subseteq \Omega$).
+
+For example:
+
+-   Rolling an even number with a six-sided die.
+
+$$A = \{2, 4, 6\}$$
+
+A set of subsets of $\Omega$ is an **event space** ($S$) if it satisfies the following properties:
+
+-   non-empty
+
+$$S \neq \varnothing$$
+
+-   closed under complements
+
+$$A \in S \to A^C \in S$$
+
+-   closed under countable unions
+
+$$A_1, A_2, ... \in S \to A_1 \cup A_2 \cup ... \in S$$
+
+*Each event in an event space will have an associated probability of occurring*, and these properties ensure that certain types of events will always have well-defined probabilities.
+
+A **probability measure** ($P$) is a function $f: S \to [0, 1]$ that assigns a probability to every event in the event space.
+
+To ensure that this function $P$ assigns probabilities to events in a manner that is coherent and in accord with basic intuitions about probabilities, we follow the *Kolmogorov probability axioms*.
+
+## Kolmogorov Axioms
+
+$(\Omega, S, P)$ form a *probability space* when the following conditions hold:
+
+1.  **Non-negativity**, for any $A \in S$
+
+$$0 \leq P(A) \leq 1$$
+
+2.  **Normalization.**
+
+$$P(\Omega) = 1$$
+
+3.  **Countable additivity**, if $A_1, A_2, ... \in S$ are *pairwise disjoint*, then
+
+$$P(A_1 \cup A_2, \cup ...) = P(A_1) + P(A_2) + ... $$
+
+We can represent any random generative process as a probability space $(\Omega,S,P)$.
+
+### Consequences
+
+Several other fundamental properties of probability follow directly from the Kolmogorov probability axioms:
+
+Let $A, B \in S$
+
+-   **Monotonicity**
+
+$$A \subseteq B \to P(A) \leq P(B)$$
+
+-   **Subtraction rule**
+
+$$A \subseteq B \to P(B \setminus A) = P(B) - P(A)$$
+
+-   *Some* event in $S$ *must* occur
+
+$$P(\varnothing) = 0$$
+
+-   **Complement rule**
+
+$$P(A^C) = 1 - P(A)$$
+
+## Joint and Conditional Probabilities
+
+The **joint probability** of of $A$ and $B$ (i.e. that both events will ocur in a single draw from $(\Omega, S, P)$) is denoted as $P(A \cap B)$.
+
+For example, the probability of rolling a six-sided die and getting $A = \{\omega \in \Omega: \omega \geq 4\}$ *and* $B = \{\omega \in \Omega: \omega \text{ is even}\}$ is as follows:
+
+$$
+P(A \cap B) = P(\{4, 5, 6\} \cap \{2, 4, 6\}) = \frac{|\{4, 6\}|}{|\Omega|} = \frac{1}{3}
+$$
+
+-   **Addition rule**
+
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+
+The **conditional probability** of $A$ given $B$ is denoted as
+
+$$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+
+-   **Product rule**
+
+$$P(A \mid B) P(B) = P(A \cap B)$$
+
+-   **Bayes' rule**
+
+$$P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}$$
+
+The **law of total probability** states that if $\{A_1, A_2, A_3, ...\}$ is a **partition** of $\Omega$ and $B \in S$, then
+
+$$
+P(B) = \sum_i P(B \cap A_i) = \sum_i \underbrace{P(B \mid A_i) P(A_i)}_\text{product rule}
+$$
+
+In other words, the probability of an event $B$ is effectively a weighted average of the conditional probabilities of that event ($B$).
+
+**Events and conditional probabilities**.
+
+When writing $\Pr(A\mid E)$, we do *not* mean that $A \mid E$ is an event and that we're taking its probability.
+
+$$A \mid E \hspace{0.3cm} \text{is not an event!}$$
+
+-   $\Pr(A \mid E)$ is a probability function which assigns probabilities in accordance with the knowledge that $E$ has occurred.
+
+-   $\Pr(A)$ is a different probability function which assigns probabilities without regard for whether $E$ has occurred or not.
+
+## Independence
+
+Events $A, B \in S$ are ***independent*** if $P(A \cap B) = P(A)P(B)$. This also implies the following:
+
+$$A \perp B \iff P(A \mid B) = P(A)$$
+
+That is, when $A$ and $B$ are independent, knowing whether or not $B$ has occurred gives us no information about the probability that $A$ has occurred. This is a very strong assumption, but it lies in the heart of many applications in statistics that work with independent and identically distributed (*i.i.d.*) random variables.
+
+-   **Conditional independence**
+
+$$A \perp B \mid E \iff P(A \cap B \mid E) = P(A \mid E) P(B \mid E)$$
+
+This is different from saying that $A$ and $B$ are independent themselves.
+
+In general:
+
+-   Two events can be conditionally independent given $E$, but not independent.
+
+-   Two events can be independent, but not conditionally independent given $E$.
+
+-   Two events can be conditionally independent given $E$, but not independent given $E^C$.

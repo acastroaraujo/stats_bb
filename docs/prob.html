@@ -49,7 +49,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prob-counting.html" rel="next">
+<link href="./prob-intro.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -128,12 +128,22 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob-counting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Counting Methods</span></a>
+  <a href="./prob-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob-random-vars.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Random Variables</span></a>
+  <a href="./prob-counting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Counting Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-random-vars.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-sum-dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></a>
   </div>
 </li>
       </ul>
@@ -148,17 +158,17 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rn-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methods</span></a>
+  <a href="./rn-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rn-integration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integration</span></a>
+  <a href="./rn-integration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Integration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rn-mcmc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">MCMC</span></a>
+  <a href="./rn-mcmc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MCMC</span></a>
   </div>
 </li>
       </ul>
@@ -173,22 +183,22 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cm-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./cm-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cm-nhst.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Null Hypothesis Testing</span></a>
+  <a href="./cm-nhst.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Null Hypothesis Testing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cm-modeling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Modeling</span></a>
+  <a href="./cm-modeling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cm-visualizing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualization</span></a>
+  <a href="./cm-visualizing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Visualization</span></a>
   </div>
 </li>
       </ul>
@@ -203,7 +213,14 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#interpretations" id="toc-interpretations" class="nav-link active" data-scroll-target="#interpretations">Interpretations</a></li>
+  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -236,24 +253,28 @@ div.csl-indent {
 <p><em>Given the outcomes, what can we say about the process that generated the data?</em></p>
 </dd>
 </dl>
+<section id="interpretations" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="interpretations">Interpretations</h2>
 <p>There are at least three common interpretations of <strong>probability</strong>.</p>
 <p>The <strong>classical interpretation</strong> is based on the idea of <em>equally likely outcomes</em>—i.e., if the outcome of some process must be <span class="math inline">\(m\)</span> of <span class="math inline">\(n\)</span> different outcomes, and these are equally likely to occur, then the probability of <span class="math inline">\(m\)</span> is <span class="math inline">\(m/n\)</span>. This interpretation is silly because the idea of “equally likely outcome” is based on the concept of probability that we are trying to define, it’s a tautology.</p>
 <aside>
-<p><em>Most interesting outcomes cannot be assumed to be equally likely!</em></p>
+<em>Most interesting outcomes cannot be assumed to be equally likely!</em>
 </aside>
 <p>An extension of this interpretation leads to an interpretation of probability as a <strong>calculus for counting</strong> that allows us to represent the plausibility of different events. This is also known as the <strong>naive</strong> definition of probability. It is very limited because it requires equally likely outcomes and can’t handle <em>uncountable</em> or infinite sample spaces (e.g., areas, continuous time measurements). Better interpretations of probability build upon the same mathematical foundations.</p>
-<p>According to the <strong>frequentist interpretation,</strong> the probability that some specific outcome of a process will be obtained can be interpreted to mean <em>the relative frequency</em> with which that outcome would be obtained if the process were <em>repeated a large number of times</em> and <em>under similar conditions</em>. In other words, probability describes the <strong>proportions</strong> of specific events that can be expected to occur among many realizations of a random generative process. It's all about <em>long-term frequencies.</em> Probabilities are the long-term frequency properties of things that we can measure repeatedly. This interpretation is not silly, but it only applies to problems in which there can be (at least in principle) a large number of similar repetitions of a certain process. <em>Many important problems are not of this kind.</em></p>
+<p>According to the <strong>frequentist interpretation,</strong> the probability that some specific outcome of a process will be obtained can be interpreted to mean <em>the relative frequency</em> with which that outcome would be obtained if the process were <em>repeated a large number of times</em> and <em>under similar conditions</em>. In other words, probability describes the <strong>proportions</strong> of specific events that can be expected to occur among many realizations of a random generative process. It’s all about <em>long-term frequencies.</em> Probabilities are the long-term frequency properties of things that we can measure repeatedly. This interpretation is not silly, but it only applies to problems in which there can be (at least in principle) a large number of similar repetitions of a certain process. <em>Many important problems are not of this kind.</em></p>
 <aside>
 <p><em>What number of times is large enough?</em></p>
-<p><em>The conditions must not be "exactly" the same; otherwise the outcomes would be exactly the same!</em></p>
+<p><em>The conditions must not be “exactly” the same; otherwise the outcomes would be exactly the same!</em></p>
 </aside>
 <p>The <strong>Bayesian interpretation</strong> takes a different direction. Here, we treat “randomness” as <em>a property of information,</em> not of or the world. Almost nothing in the world is actually random. Presumably, we could predict everything exactly if we had more information. Thus, <em>we use randomness to describe <strong>uncertainty</strong> in the face of incomplete knowledge.</em> This is why this is also known as the <strong>subjective interpretation</strong> of probability.</p>
 <blockquote class="blockquote">
-<p>It will make some readers uncomfortable to suggest that there is more than one way to define “probability.” Aren't mathematical concepts uniquely correct? They are not. Once you adopt some set of premises, or axioms, everything does follow logically in mathematical systems. But the axioms are open to debate and interpretation. So not only is there "Bayesian" and "frequentist" probability, but there are different versions of Bayesian probability even, relying upon different arguments to justify the approach.</p>
+<p>It will make some readers uncomfortable to suggest that there is more than one way to define “probability.” Aren’t mathematical concepts uniquely correct? They are not. Once you adopt some set of premises, or axioms, everything does follow logically in mathematical systems. But the axioms are open to debate and interpretation. So not only is there “Bayesian” and “frequentist” probability, but there are different versions of Bayesian probability even, relying upon different arguments to justify the approach.</p>
 <p><span class="citation" data-cites="mcelreath2020">McElreath (<a href="references.html#ref-mcelreath2020" role="doc-biblioref">2020, 12–13</a>)</span></p>
 </blockquote>
 <p>Regardless of the ongoing controversy about its interpretation, probability was established as a mathematical theory by Kolmogorov in the early 20th century. And although the different interpretations seem incompatible, the <em>calculus of probability</em> applies equally well no matter which interpretation one prefers. Thus, probability is simply a mathematical tool that allows us allows us to quantify uncertainty and randomness in principled ways.</p>
-<p>Axioms</p>
+</section>
+<section id="extra" class="level2">
+<h2 class="anchored" data-anchor-id="extra">Extra</h2>
 <p>file:///Users/acastroaraujo/Documents/Notes/Math/Probability.html</p>
 <p>file:///Users/acastroaraujo/Documents/Columbia/3.%20Fall/BDA%20-%20Gelman/Notes_-_BDA.html</p>
 <p>file:///Users/acastroaraujo/Documents/Columbia/1.%20Fall/Probability%20Theory/Other_Stuff.html</p>
@@ -261,8 +282,6 @@ div.csl-indent {
 <p>file:///Users/acastroaraujo/Documents/Old%20Repositories/SelfStudy/Probability-and-Statistics/1-Probability.html</p>
 <p>https://acastroaraujo-notebooks.netlify.app/posts/2021-01-27-probability-notes/</p>
 <p>https://betanalpha.github.io/assets/case_studies/probability_theory.html#12_sigma_algebras</p>
-<p>Add separate entry for:</p>
-<p>https://acastroaraujo-notebooks.netlify.app/posts/2021-01-31-counting-methods/</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -273,6 +292,7 @@ McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Exa
 Wasserman, Larry. 2004. <em>All of Statistics: A Concise Course in Statistical Inference</em>. Vol. 26. Springer.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -415,8 +435,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prob-counting.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Counting Methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./prob-intro.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -10,8 +10,11 @@ book:
     - index.qmd
     - part: prob.qmd
       chapters: 
+        - prob-intro.qmd
         - prob-counting.qmd
         - prob-random-vars.qmd
+        - prob-sum-dist.qmd
+        - prob-transformations.qmd
     - part: rn.qmd
       chapters:
         - rn-methods.qmd

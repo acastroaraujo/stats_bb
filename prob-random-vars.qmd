@@ -1,1 +1,212 @@
-## Random Variables
+# Random Variables
+
+## Basics
+
+A **random variable**, $X$, is a function from the sample space, $\Omega$, to some subset of $\mathbb{R}$ with a probability-based rule.
+
+$$X: \Omega \to \mathbb R$$
+
+Recall that each $\omega \in \Omega$ denotes a state of the world. A random variable $X$ will take take on the value $X(\omega)$.
+
+For example, the event $\{X = 1\}$ should be understood the set of of states of the world such that $X(\omega) = 1$.
+
+$$
+P(\{X = 1\}) = P(\{\omega \in \Omega: X(\omega) = 1\})
+$$
+
+There are two ways in which to apply functions to random variables:
+
+1.  **Function of a random variable**. Use the value of $X(\omega)$ as input into another function $g$, with the result being another random variable.
+
+    $$g \circ X: \Omega \to \mathbb R$$
+
+    For example:
+
+    $$
+     g(X) = \begin{cases} 1 &\text{if } X>0 \\ 0  &\text{otherwise}
+     \end{cases}
+     $$
+
+2.  **Operator on random variable**. These will summarize the properties of random variables such as *expectations* or *variances*. We use the $[\cdot]$ notation to denote operators.
+
+We use uppercase to denote random variables and lowercase to denote particular realizations (or variables in the regular, algebraic sense).
+
+-   A **discrete random variable** can only can take on a finite (or countably infinite) number of different values.
+
+-   A **continuous random variable** can take on a continuum of possible values. Loosely speaking, a random variable is continuous if its CDF is continuous.
+
+## PMFs, PDFs, and CDFs
+
+Given a discrete random variable $X$, we can summarize the probability of each outcome $x$ occurring with a **probability mass function** (PMF). A continuous random variable is characterized by its **probability density function** (PDF).
+
+$$
+\underbrace{f(x) = P(X = x)}_\text{PMF} \hspace{1cm} 
+\int_a^b \underbrace{f(x)}_\text{PDF}dx = P(a \leq X \leq b)
+$$
+
+Note that both functions must be non-negative
+
+$$f(x) \geq 0 \hspace{0.5cm} \text{ for all } x \in \mathbb R$$
+
+These functions tell us *most* of what we need to know about the **distribution** of random variables (i.e. the complete collection of probabilities assigned to events defined in terms of $X$).
+
+The **cumulative distribution function** (CDF) tell us *everything* we need to know about the distribution of random variables. More importantly, a CDF is defined the same way for both discrete *and* continuous random.
+
+The CDF of $X$ is defined as
+
+$$F(x) = P(X \leq x) \hspace{0.5cm} \text{ for all } x \in \mathbb R$$
+
+In other words, the CDF returns the probability that an outcome for a random variable will be less than or equal to a given value.
+
+Any CDF $F$ will have the following properties:
+
+-   $F$ is nondecreasing as $x$ increases
+
+$$x_1 < x_2 \to F(x_1) < F(x_2)$$
+
+-   Limits
+
+$$
+\lim_{x \to +\infty} F(x) = 1 \hspace{0.5cm}
+\lim_{x \to -\infty} F(x) = 0
+$$
+
+-   **Complement rule**
+
+$$1-F(x) = P(X > x)$$
+
+-   **Continuity from the right**. A CDF is always continuous from the right, even if the random variable is discrete (in which case the CDF is a "step function").
+
+$$\lim_{x \to a^+} F(x) = F(a)$$
+
+In the case of *continuous random variables*, note that the PDF is contained inside the definition of the CDF.
+
+$$
+\overbrace{F(a) = P(X \leq a) = \int_{-\infty}^a \underbrace{f(x)}_\text{PDF}dx}^\text{Cumulative Distribution Function}
+$$
+
+That is a probability **density** is the rate of change in cumulative probability. So where cumulative probability is increasing rapidly, density can easily exceed 1. But if we calculate the area under the density function, it will never exceed 1. In other words, the PDF is a "slope" that is defined according to the Fundamental Theorem of Calculus as follows:
+
+$$\underbrace{f(x) = \frac{dF(u)}{du} \bigg|_{u = x}}_\text{Probability Density Function}$$
+
+------------------------------------------------------------------------
+
+**Two additional definitions.**
+
+-   **Support**. . The set of values at which the PMF (or PDF) is positive is called its support.
+
+$$
+\textsf{supp}(X) = \{x \in \mathbb R: f(x) > 0\}
+$$
+
+-   The inverse of a CDF ($Q = F^{-1}$) is called the **quantile function**.
+
+    For example:
+
+$$
+\underbrace{Q(0.5)}_\text{median} = x \iff P(X \leq x) = 0.5
+$$
+
+## Relationships
+
+When we say two random variables are equal, we mean that they are *equal as functions*; they assign the same value to every state of the world.
+
+$$
+X = Y \iff X(\omega) = Y(\omega)\hspace{0.5cm} \forall \omega \in \Omega
+$$
+
+**Discrete multivariate distributions** are described by their *joint* CDF, PMF, or PDF.
+
+$$
+\overbrace{F(a, b) = P(X \leq a \cap Y \leq b) = \int_{-\infty}^a \int_{-\infty}^b \underbrace{f(x, y)}_\text{joint PDF}dy dx}^\text{Joint Cumulative Distribution Function}
+$$
+
+The same as before, integrating over a PDF will give us probability statements such as
+
+$$
+P(a \leq X \leq b, c \leq Y \leq d) = \int_a^b \int_c^d f(x, y)dydx
+$$
+
+The same goes for summing over a PMF:
+
+$$
+P(a \leq X \leq b, c \leq Y \leq d) = \sum_{x = a}^b \sum_{y = c}^d f(x, y)
+$$
+
+And the "slope" interpretation extends to multivariate PDFs:
+
+$$
+\underbrace{f(x, y) = \frac{\partial F(u, v)}{\partial u \partial v} \bigg|_{u = x, v = y}}_\text{Joint Probability Density Function}
+$$
+
+And for the discrete setting:
+
+$$
+\underbrace{f(x, y) = P(X = x, Y = y)}_\text{Joint Probability Mass Function}
+$$
+
+**Marginalization**. We can go from multivariate to univariate distributions with summation (for PMFs) or integration (for PDFs). Both of these follow from the *law of total probability*.
+
+-   **Marginal PMF**
+
+$$
+f_Y(y) = P(Y = y) = \sum_{\textsf{supp}[X]} f_{X, Y}(x, y)
+$$
+
+-   **Marginal PDF**
+
+$$
+\text{Continuous: }f_Y(y) = \int_{-\infty}^\infty f_{X, Y}(x, y)dx
+$$
+
+**Conditional Distributions**. The *conditional PMF* of $Y$ given $X$ tells us the probability that a given value of $Y$ will occur, given that a certain value of $X$ occurs. In contrast, the conditional PDF of $Y$ given $X$ is just the PDF of $Y$ given that a certain value of $X$ occurs.
+
+-   **Conditional PMF**
+
+$$
+\begin{align}
+f_{Y \mid X}(y \mid x) = P(Y = y \mid X = x) = \frac{f(x, y)}{f(x)} \\\\ \forall y \in \mathbb R \text{ and } \underbrace{\forall x \in \textsf{supp}(X)}_{\text{denominator} \neq 0}
+\end{align}
+$$
+
+-   **Conditional PDF**
+
+$$
+f_{Y \mid X}(y \mid x)  = \frac{f(x, y)}{f(x)} \hspace{0.5cm} \forall y \in \mathbb R \text{ and } \forall x \in \textsf{supp}[X]
+$$
+
+-   **Product rule for PMFs and PDFs**
+
+$$
+f(x \mid y)f(y) = f(x, y)
+$$
+
+-   **Independence of random variables** regardless of whether they are discrete or continuous.
+
+$$X \perp Y \iff f(x, y) = f(x) f(y)$$
+
+$$X \perp Y \iff f(x \mid y) = f(x)$$
+
+## Multivariate Notation
+
+A **random vector** of length $K$ is a vector whose components are random variables:
+
+$$
+\mathbf X (\omega) = \pmatrix{X_{[1]} (\omega), & \dots, & X_{[K]} (\omega)}
+$$
+
+Here, we use bracketed subscripts to denote distinct random variables because later on we use plain subscripts to denote multiple independent realizations of a single random variable.
+
+The use of boldface will make us be able to express complicated expressions in a simple manner.
+
+For example:
+
+$$
+\underbrace{F(\mathbf x)}_\text{CDF} = P(\mathbf X \leq \mathbf x) = P(X_{[1]} \leq x_{[1]}, X_{[2]} \leq x_{[2]}, \dots, X_{[K]} \leq x_{[K]}) 
+$$
+
+And if we have a continuous random vector, we have the following expression:
+
+$$
+F(\mathbf x) = \int_{-\infty}^{x_{[1]}} \int_{-\infty}^{x_{[2]}} \dots \int_{-\infty}^{x_{[K]}}  f(u_{[1]}, u_{[2]}, \dots, u_{[K]})du_{[K]} \dots du_{[2]}du_{[1]}
+$$

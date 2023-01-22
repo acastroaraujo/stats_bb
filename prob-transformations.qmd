@@ -1,0 +1,50 @@
+# Transformations
+
+## Ignoring Transformations
+
+**LOTUS**
+
+For simplicity, let's assume that $Y = g(X)$.
+
+$$
+\underbrace{f_Y(y) = f_X(x) \left| \frac{d x}{dy} \right|}_\text{Transformation}
+$$
+
+We can then express $E[Y]$ as follows:
+
+$$
+\begin{align}
+E[Y] &= \int_{-\infty}^\infty y\ f_X(x)\left| \frac{d x}{dy} \right| dy \\\\ &= \int_{-\infty}^\infty g(x)\ f_X(x)dx
+\end{align}
+$$
+
+**Example: The expectation of a standard log-normal distribution**
+
+Suppose we have the following random variables:
+
+-   $Y = g(X) = e^X$ and $\frac{dy}{dx} = e^x$
+
+-   $X \sim \textsf{normal}(0, 1)$
+
+**Without LOTUS**. Because $f_Y(y)$ is unknown, we need to first figure it out through the use of *transformations*. This step can be immensely complicated in other circumnstances.
+
+$$f_Y(y) = \varphi(x) \left| \frac{d x}{dy} \right| = \varphi(\log y)\frac{1}{y}$$
+
+We then obtain the expectation as follows:
+
+$$
+\begin{align}
+E[Y] &= \int_0^\infty \varphi(\log y) dy \\\\ &=
+\int_0^\infty \frac{1}{\sqrt{2 \pi}} \exp\left(- \frac{1}{2} \log^2 y\right) dy \\\\ &= \sqrt{e}
+\end{align}
+$$
+
+**With LOTUS** we don't have to deal with transformations. Instead, we delve right to it.
+
+$$
+\begin{align}
+E[g(X)] &= \int_{-\infty}^\infty g(x) \varphi(x) dx \\\\ &= \int_{-\infty}^\infty  \frac{1}{\sqrt{2 \pi}} \exp\left(x - \frac{x^2}{2}\right) \\\\ &= \sqrt{e}
+\end{align}
+$$
+
+Thus, LOTUS is quicker because we can ignore *transformations*. More importantly, this method is less prone to mistakes because we don't have to worry about changing the bounds on the integrals!
