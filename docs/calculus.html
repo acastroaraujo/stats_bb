@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Building Blocks - 1&nbsp; Calculus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./prob.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Calculus</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Building Blocks</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./calculus.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Calculus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./prob.html" class="sidebar-item-text sidebar-link">Probability</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-counting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Counting Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-random-vars.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-sum-dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-transformations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./rn.html" class="sidebar-item-text sidebar-link">Generating Random Numbers</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rn-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rn-integration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rn-mcmc.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">MCMC</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./cm.html" class="sidebar-item-text sidebar-link">Correlation Matrices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm-nhst.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Null Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm-modeling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm-visualizing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./computing.html" class="sidebar-item-text sidebar-link">Computing</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing-rcpp.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">RCPP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#derivatives" id="toc-derivatives" class="nav-link active" data-scroll-target="#derivatives"><span class="toc-section-number">1.1</span>  Derivatives</a></li>
+  <li><a href="#integrals" id="toc-integrals" class="nav-link" data-scroll-target="#integrals"><span class="toc-section-number">1.2</span>  Integrals</a></li>
+  <li><a href="#infinite-sums" id="toc-infinite-sums" class="nav-link" data-scroll-target="#infinite-sums"><span class="toc-section-number">1.3</span>  Infinite Sums</a></li>
+  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other"><span class="toc-section-number">1.4</span>  Other</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Calculus</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Packages</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"Amiri"</span>) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="derivatives" class="level2 page-columns page-full" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="derivatives"><span class="header-section-number">1.1</span> Derivatives</h2>
+<p><strong>Limit Definition</strong></p>
+<p><span id="eq-deriv-limit"><span class="math display">\[
+\begin{align}
+f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}, &amp;&amp;\text{provided the limit exists}
+\end{align}
+\tag{1.1}\]</span></span></p>
+<p>Derivatives are used to understand instantaneous rates of change, i.e., when <span class="math inline">\(\Delta x \approx 0\)</span>.</p>
+<p>This formula is equivalent:</p>
+<p><span class="math display">\[
+f^\prime (a) = \lim_{b \to a} \frac{f(b) - f(a)}{b-a}
+\]</span></p>
+<p>For example, the area of a growing square is <span class="math inline">\(A(x) = x^2\)</span>. How does <span class="math inline">\(A(x)\)</span> change every time <span class="math inline">\(x\)</span> changes? We have that, for any given value of <span class="math inline">\(x\)</span>, the rate of instantaneous change is given by:</p>
+<p><span class="math display">\[
+\begin{align}
+A^\prime (x) = 2x &amp;&amp; \text{or} &amp;&amp; \frac{dA}{dx} = 2x
+\end{align}
+\]</span></p>
+<p><em>Note. When</em> <span class="math inline">\(\Delta\)</span> <em>is infinitely small we change notation to</em> <span class="math inline">\(d\)</span><em>.</em></p>
+<p>If we zoom in on <em>any</em> function at a given point <span class="math inline">\(a\)</span>, a tangent line at <span class="math inline">\(a\)</span> will be given by the following formula:</p>
+<p><span class="math display">\[
+y = f(a) + f^\prime (a) (x-a)
+\]</span></p>
+<aside>
+<em>linear approximation of</em> <span class="math inline">\(f\)</span> <em>near</em> <span class="math inline">\(x=a\)</span>
+</aside>
+<p><strong>Critical points</strong></p>
+<p><span class="math inline">\(c\)</span> is a critical point for the smooth function <span class="math inline">\(f\)</span> iff <span class="math inline">\(f^\prime(c) = 0\)</span>.</p>
+<p>In order to figure out if <span class="math inline">\(c\)</span> is a local maximum or local minimum, we use the <em>second derivative.</em> The second derivative of <span class="math inline">\(f\)</span> measures the rate of change of the first derivative. In a nutshell, we find critical points by solving <span class="math inline">\(f^\prime = 0\)</span>. We then plug these values into <span class="math inline">\(f^{\prime\prime}\)</span>. If the result is positive, the critical point is a local minimum; if the result is negative, the critical point is a local maximum.</p>
+<p><em>This procedure does not always work.</em></p>
+<p><em>Note. For higher order derivatives we use the</em> <span class="math inline">\(f^{(n)}(x)\)</span> <em>notation, where</em> <span class="math inline">\(f^{(0)}(x) = f(x)\)</span><em>. We can also use the symbol</em> <span class="math inline">\(\frac{d^nf}{dx^n}\)</span> <em>for this purpose.</em></p>
+<p><strong>Derivative Rules:</strong></p>
+<p><em>The constant rule</em>—i.e., constants can move into and out of derivatives.</p>
+<p><span id="eq-constant-rule"><span class="math display">\[
+\frac{d}{dt} \bigg[c f(t) \bigg] = c \frac{d}{dt} \bigg[f(t)\bigg] = c \cdot f^\prime (t)
+\tag{1.2}\]</span></span></p>
+<p><em>The sum rule—</em>i.e., the derivative of the sum is the sum of the derivatives.</p>
+<p><span id="eq-sum-rule"><span class="math display">\[
+\frac{d}{dt}\bigg[ f(t) + g(t) \bigg] = f^\prime (t) + g^\prime (t)
+\tag{1.3}\]</span></span></p>
+<p><em>The product rule.</em></p>
+<p><span id="eq-product-rule"><span class="math display">\[
+\frac{d}{dx} \bigg[f(x) g(x) \bigg] = f(x) g^\prime (x) + g(x) f^\prime(x)
+\tag{1.4}\]</span></span></p>
+<p><em>The power rule.</em></p>
+<p><span id="eq-power-rule"><span class="math display">\[
+\frac{d}{dx} \bigg[ x^n\bigg] = n \cdot x^{n-1}
+\tag{1.5}\]</span></span></p>
+<p><em>Note. All these rules make it possible to estimate the derivative of any polynomial of the form</em> <span class="math inline">\(c_nx^n + c_{n-1} x^{n-1} + \dots + c_1\)</span><em>.</em></p>
+<p><em>The chain rule</em> allows us to find derivatives of compositions.</p>
+<p><span id="eq-chain-rule"><span class="math display">\[
+\frac{d}{dx} \bigg[ (f \circ g)(x) \bigg] = f^\prime (g(x)) \cdot g^\prime (x)
+\tag{1.6}\]</span></span></p>
+<aside>
+<span class="math display">\[
+(f \circ g)(x) = f(g(x))
+\]</span>
+</aside>
+<p>We can use <a href="#eq-power-rule">Equation&nbsp;<span>1.5</span></a> and <a href="#eq-chain-rule">Equation&nbsp;<span>1.6</span></a> to figure out the following:</p>
+<p><span class="math display">\[
+\frac{d}{dx} \bigg[ \frac{1}{g(x)} \bigg] = - \frac{g^\prime (x)}{g(x)^2}
+\]</span></p>
+<p>Using this with <a href="#eq-product-rule">Equation&nbsp;<span>1.4</span></a>, we can figure out the <em>quotient rule:</em></p>
+<p><span id="eq-quotient-rule"><span class="math display">\[
+\frac{d}{dx} \bigg[ \frac{f(x)}{g(x)}\bigg] = f^\prime (x) \Bigg( \frac{1}{g(x)} \Bigg) + f(x) \Bigg(- \frac{g^\prime (x)}{g(x)^2} \Bigg) = \frac{f^\prime (x) g(x) - f(x) g^\prime (x)}{g(x)^2}
+\tag{1.7}\]</span></span></p>
+</section>
+<section id="integrals" class="level2 page-columns page-full" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="integrals"><span class="header-section-number">1.2</span> Integrals</h2>
+<p>What is the area <span class="math inline">\(A(a, b)\)</span> below the graph <span class="math inline">\(y = f(x) \geq 0\)</span>, above the <span class="math inline">\(x\)</span>-axis, and between <span class="math inline">\(x=a\)</span>, and <span class="math inline">\(x=b\)</span>? We can estimate <span class="math inline">\(A(a, b)\)</span> with a sum, and then argue that the estimate becomes exact as the number of terms approximates <span class="math inline">\(\infty\)</span>. This is called a <em>Riemann sum.</em></p>
+<p><span class="math display">\[
+A(a, b) = \underbrace{\int_a^b \overbrace{f(x)}^{\small \text{integrand}} dx}_\text{integral}
+\]</span></p>
+<p>The elongated “s” stands for “sum,” when the number of terms to be summed approaches infinity. The decorations on the “s” are called the <em>lower</em> and <em>upper limits of integration</em>.</p>
+<p>The symbols <span class="math inline">\(f(x) \cdot dx\)</span> make it clear that the terms of a Riemann sum are the areas of rectangles:</p>
+<p><span class="math display">\[
+\begin{align}
+\text{base: } (x_{n+1} - x_n), &amp;&amp;\text{height: }f \bigg( \frac{x_n + x_{n+1}}{2} \bigg)
+\end{align}
+\]</span></p>
+<p>For example,</p>
+<p><span class="math display">\[
+\int_0^1 x^2 dx = \frac{x^3}{3} \Bigg|_0^1 = \frac{1^3}{3} - \frac{0^3}{3} = \frac{1}{3}
+\]</span></p>
+<p>represents the area shaded in pink in the following graph:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> \(x) x<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">geom =</span> <span class="st">"area"</span>, <span class="at">fun =</span> \(x) x<span class="sc">^</span><span class="dv">2</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="calculus_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(\(x) x<span class="sc">^</span><span class="dv">2</span>, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.3333333 with absolute error &lt; 3.7e-15</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> n)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> result <span class="sc">+</span> (x[i <span class="sc">+</span> <span class="dv">1</span>] <span class="sc">-</span> x[i]) <span class="sc">*</span> ((x[i] <span class="sc">+</span> x[i <span class="sc">+</span> <span class="dv">1</span>])<span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3333248</code></pre>
+</div>
+</div>
+<aside>
+100 is much smaller than <span class="math inline">\(\infty\)</span>
+</aside>
+<p>We use the area under the curve in this graph to think about many things—e.g., displacement of an object with <span class="math inline">\(x\)</span> as time and <span class="math inline">\(y\)</span> as velocity; probability distributions of arbitrary random variables with <span class="math inline">\(y\)</span> as probability densities; etc.</p>
+<p><strong>The Fundamental Theorem of Calculus</strong></p>
+<p><span id="eq-fundamental-theorem"><span class="math display">\[
+f(b) - f(a) = \int_a^b f^\prime (x) dx
+\tag{1.8}\]</span></span></p>
+<p>We have already seen an example of this when looking for shaded area under <span class="math inline">\(f(x) = x^2\)</span> between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> in the previous example:</p>
+<p><span class="math display">\[
+\int_0^1 x^2 dx = \int_0^1 \frac{d}{dx} \bigg[ \frac{1}{3} x^3\bigg] dx = \bigg(\frac{1}{3}x^3\bigg) \Bigg|_0^1 = \frac{1}{3} (1^3) - \frac{1}{3} (0^3) = \frac{1}{3}
+\]</span></p>
+<aside>
+<span class="math inline">\(f|_a^b\)</span> is shorthand for <span class="math inline">\(f(b) - f(a)\)</span>
+</aside>
+<p><strong>Anti-derivatives</strong></p>
+<p>If <span class="math inline">\(F^\prime (x) = f(x)\)</span>, then the definite integral of <span class="math inline">\(f\)</span> over <span class="math inline">\([a,b]\)</span> is</p>
+<p><span class="math display">\[
+\int_a^b f(x) dx = F(b) - F(a)
+\]</span></p>
+<p>The function <span class="math inline">\(F(x)\)</span> is called <em>an</em> anti-derivative of <span class="math inline">\(f(x)\)</span>.</p>
+<p>All anti-derivatives of <span class="math inline">\(f(x)\)</span> are given by <span class="math inline">\(F(x) + C\)</span> for any <em>constant of integration</em> <span class="math inline">\(C\)</span>.</p>
+<p><em>The Power Rule</em></p>
+<p><span class="math display">\[
+\begin{align}
+\int x^n dx = \frac{1}{n+1} x^{n+1} + C, &amp;&amp;\text{for } n \neq -1
+\end{align}
+\]</span></p>
+<p>and for <span class="math inline">\(n=1\)</span> we have</p>
+<p><span class="math display">\[
+\int x^{-1} dx = \ln |x| + C
+\]</span></p>
+<p><em>Note. We use “</em><span class="math inline">\(\int\)</span>” for anti-derivatives because they are closely related to integrals thanks to the fundamental theorem of calculus shown in <a href="#eq-fundamental-theorem">Equation&nbsp;<span>1.8</span></a>.</p>
+<p><em>The Sum Rule</em></p>
+<p><span class="math display">\[
+\int \bigg[ f(x) + g(x) \bigg] dx = \int f(x) dx + \int g(x) dx
+\]</span></p>
+<p><em>The Constant Rule</em></p>
+<p><span class="math display">\[
+\int \bigg[ c f(x) \bigg] dx = c \int f(x) dx
+\]</span></p>
+</section>
+<section id="infinite-sums" class="level2 page-columns page-full" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="infinite-sums"><span class="header-section-number">1.3</span> Infinite Sums</h2>
+<p><em>Preliminary remarks</em></p>
+<p>A <strong>sequence</strong> <span class="math inline">\(A_n\)</span> is an ordered list of numbers where the <em>index</em> <span class="math inline">\(n\)</span> is drawn from a fixed subset of the integers. In general, the sequence <span class="math inline">\(A_n\)</span> has a limit <span class="math inline">\(L\)</span> if we can make <span class="math inline">\(|A_n - L|\)</span> as small as we like by picking <span class="math inline">\(n\)</span> large enough.</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} A_n= L
+\]</span></p>
+<p>Example: <em>logistic sequence.</em></p>
+<p>Suppose a population <span class="math inline">\(p_n\)</span> that increases in size over time relative to some carrying capacity (thus, <span class="math inline">\(p\)</span> is a proportion).</p>
+<p><span class="math display">\[
+p_{n+1} = c \times p_n \times (1 - p_n)
+\]</span></p>
+<aside>
+recursive equation
+</aside>
+<p>Here, <span class="math inline">\(c\)</span> is a positive constant. If the population growth given by this formula eventually stabilizes, we can think of the <em>long-term population</em> as <span class="math inline">\(\lim_{n \to \infty} p_n\)</span>, assuming that this limit actually exists.</p>
+<p><span class="math display">\[
+L = \frac{c-1}{c}
+\]</span></p>
+<aside>
+<p>Plug in <span class="math inline">\(L\)</span> for both <span class="math inline">\(p_n\)</span> and <span class="math inline">\(p_{n+1}\)</span> and solve for <span class="math inline">\(L\)</span>.</p>
+</aside>
+<p><em>However, we don’t know if the</em> <span class="math inline">\(\lim_{n \to \infty} p_n\)</span> <em>actually exists for all values of</em> <span class="math inline">\(c\)</span> <em>and</em> <span class="math inline">\(p_o\)</span> <em>(it doesn’t).</em></p>
+<p><strong>Infinite sums</strong></p>
+<p>An infinite sum is the limit of the sequence of partial sums:</p>
+<p><span id="eq-infinite-sum"><span class="math display">\[
+\sum_{j = 1}^\infty a_j = \lim_{n \to \infty} \sum_{j = 1}^n a_j
+\tag{1.9}\]</span></span></p>
+<p>When this limit exists, we say that the sum <strong>converges</strong>; otherwise we say that it <strong>diverges.</strong></p>
+<p>Example: <em>the geometric sum</em></p>
+<p><span class="math display">\[
+\sum_{j=0}^\infty r^j
+\]</span></p>
+<p>Geometric sums have a special place in calculus for a variety of reasons, the most important being that we know precisely when they converge and what they converge to.</p>
+<p>It’s useful to think of the following sequences:</p>
+<p><span class="math display">\[
+\begin{align}
+S_n &amp;= 1 + r + r^2 + \dots + r^n, \\
+S_{n+1} &amp;= 1 + r + r^2 + \dots r^{n+1}
+\end{align}
+\]</span></p>
+<p>From which we can establish that:</p>
+<p><span class="math display">\[
+\begin{align}
+S_{n+1} &amp;= r S_n + 1, \\
+S_{n+1} &amp;= S_n + r^{n+1}
+\end{align}
+\]</span></p>
+<aside>
+<p>Multiply <span class="math inline">\(S_n\)</span> by <span class="math inline">\(r\)</span> and add <span class="math inline">\(1\)</span> to get the first equation.</p>
+</aside>
+<p>As it turns out, the geometric sum converges if <span class="math inline">\(|r| &lt; 1\)</span> and diverges if <span class="math inline">\(|r| \geq 1\)</span>.</p>
+<p>Assuming that the limit exists, and thus <span class="math inline">\(|r| &lt; 1\)</span>, we can get the following:</p>
+<p><span class="math display">\[
+\lim_{j \to \infty} \sum_{j=0}^j r^j = \frac{1}{1-r}
+\]</span></p>
+<aside>
+<p>Remember to plug in <span class="math inline">\(L\)</span> for both <span class="math inline">\(S_{n+1}\)</span> and <span class="math inline">\(S_n\)</span>.</p>
+</aside>
+<p><strong>Taylor Series</strong></p>
+<p>A smooth function <span class="math inline">\(f\)</span> can be approximated near any given point <span class="math inline">\(x=a\)</span> by</p>
+<p><span id="eq-taylor-series"><span class="math display">\[
+y = \underbrace{f(a) + f^{(1)} (a) (x-a) + \frac{1}{2!}f^{(2)}(a)(x-a)^2}_{\text{quadratic approximation}} + \frac{1}{3!}f^{(3)}(a)(x-a)^3 + \dots
+\tag{1.10}\]</span></span></p>
+</section>
+<section id="other" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="other"><span class="header-section-number">1.4</span> Other</h2>
+<p>Euler’s number <span class="math inline">\(e\)</span> is defined in terms of a limit approaching infinity.</p>
+<p><span class="math display">\[
+e = \lim_{x \to \infty} \bigg( 1 + \frac{1}{x} \bigg)^x \approx 2.718282...
+\]</span></p>
+<p>We also call this a <em>horizontal asymptote.</em></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x) (<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>x)<span class="sc">^</span>x</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x"</span>, <span class="at">y =</span> <span class="st">"f(x)"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> foo,  <span class="at">n =</span> <span class="fl">1e3</span>) <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">exp</span>(<span class="dv">1</span>), <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="calculus_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>Note that the limit is undefined as <span class="math inline">\(x \to 0\)</span>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./prob.html" class="pagination-link">
+        <span class="nav-page-text">Probability</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

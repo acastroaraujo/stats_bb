@@ -8,6 +8,7 @@ book:
   date: last-modified
   chapters:
     - index.qmd
+    - calculus.qmd
     - part: prob.qmd
       chapters: 
         - prob-intro.qmd
@@ -26,6 +27,9 @@ book:
         - cm-nhst.qmd
         - cm-modeling.qmd
         - cm-visualizing.qmd
+    - part: computing.qmd
+      chapters:
+        - computing-rcpp.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -37,5 +41,6 @@ format:
     monofont: Fira Code
     fontsize: 1em
 
-
+execute:
+  freeze: auto
 

@@ -1,0 +1,343 @@
+---
+title: "RCPP"
+editor: visual
+---
+
+This notebook focuses on converting simple R functions to C++. It barely scratches the surface of what you can do with C++. For more advanced stuff, check out <https://www.learncpp.com/>
+
+```{r}
+add_three_integers <- function(x1, x2, x3) {
+  x1 + x2 + x3
+}
+
+add_three_integers(1, 2, 3)
+```
+
+C++
+
+```{Rcpp, eval = FALSE}
+int add(int x1, int x2, int x3) {
+  int sum = x1 + x2 + x3;
+  return sum;
+}
+```
+
+Using `Rcpp`
+
+```{r}
+library(Rcpp)
+
+cppFunction('
+int add(int x, int y, int z) {
+  int sum = x + y + z;
+  return sum;
+}')
+
+add # works like a regular R function
+
+add(1, 2, 3)
+```
+
+Note:
+
+> -   The syntax to create a function looks like the syntax to call a function; you don't use assignment to create functions as you do in R.
+> -   You must declare the type of output the function returns. This function returns an `int` (a scalar integer). The classes for the most common types of R vectors are: `NumericVector`, `IntegerVector`, `CharacterVector`, and `LogicalVector`.
+> -   Scalars and vectors are different. The scalar equivalents of numeric, integer, character, and logical vectors are: `double`, `int`, `String`, and `bool`.
+> -   You must use an explicit `return` statement to return a value from a function.
+> -   Every statement is terminated by a `;`.
+>
+> @wickham2019 [pp. ?]
+
+## Using `Rcpp`
+
+> Typical bottlenecks that C++ can address include:
+>
+> -   Loops that can't be easily vectorised because subsequent iterations depend on previous ones.
+>
+> -   Recursive functions, or problems which involve calling functions millions of times. The overhead of calling a function in C++ is much lower than in R.
+>
+> -   Problems that require advanced data structures and algorithms that R doesn't provide. Through the standard template library (STL), C++ has efficient implementations of many important data structures, from ordered maps to double-ended queues.
+>
+> @wickham2019 [pp. ?]
+
+*Note. C++ is object-oriented in the same way that Python is (i.e., encapsulated OPP); this means we call methods with a "`.`*" like this: `object.method()`.
+
+**Three big differences:**
+
+-   In C++, vector indices start at zero!
+
+-   Use `=` for assignment instead of `<-`.
+
+-   The syntax for "for loops" is different: `for(init; check; increment) {}`.
+
+    For example, a function that sums all elements in a vector:
+
+    ```{r}
+    cppFunction("
+    double sumC(NumericVector x) {
+      int n = x.size();
+      double result = 0;
+
+      for (int i = 0; i < n; ++i) {
+        result += x[i];
+      }
+      return result;
+    }")
+
+    sum(1:20)
+    sumC(1:20) ## almost as fast!
+    ```
+
+*Note. There are a few more differences, such as that C++ uses `pow(x, 3)` instead of `x^3`, or that it has modify-in-place operators like `+=`, `-=`*, `*=`, and `/=`.
+
+Usually it's better *not* to use `cppFunction()` and instead source stand-alone files directly using `sourceCPP()`, analogous to R's `source()` function.
+
+Stand-alone files should have a `.cpp` extension, analogous to the `.R` extension for regular scripts. Everyone of these files must be structured as follows:
+
+```{Rcpp, eval=FALSE}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+double meanC(NumericVector x) {
+  int n = x.size();
+  double total = 0;
+
+  for(int i = 0; i < n; ++i) {
+    total += x[i];
+  }
+  return total / n;
+}
+
+```
+
+### Exercises
+
+> For each of the following functions, read the code and figure out what the corresponding base R function is. You might not understand every part of the code yet, but you should be able to figure out the basics of what the function does.
+
+```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+double f1(NumericVector x) {
+  int n = x.size();
+  double y = 0;
+
+  for(int i = 0; i < n; ++i) {
+    y += x[i] / n;
+  }
+  return y;
+}
+
+NumericVector f2(NumericVector x) {
+  int n = x.size();
+  NumericVector out(n);
+
+  out[0] = x[0];
+  for(int i = 1; i < n; ++i) {
+    out[i] = out[i - 1] + x[i];
+  }
+  return out;
+}
+
+bool f3(LogicalVector x) {
+  int n = x.size();
+
+  for(int i = 0; i < n; ++i) {
+    if (x[i]) return true;
+  }
+  return false;
+}
+
+int f4(Function pred, List x) {
+  int n = x.size();
+
+  for(int i = 0; i < n; ++i) {
+    LogicalVector res = pred(x[i]);
+    if (res[0]) return i + 1;
+  }
+  return 0;
+}
+
+NumericVector f5(NumericVector x, NumericVector y) {
+  int n = std::max(x.size(), y.size());
+  NumericVector x1 = rep_len(x, n);
+  NumericVector y1 = rep_len(y, n);
+
+  NumericVector out(n);
+
+  for (int i = 0; i < n; ++i) {
+    out[i] = std::min(x1[i], y1[i]);
+  }
+
+  return out;
+}
+```
+
+*Answer:*
+
+-   `f1` is `mean()`
+
+-   `f2` is `cumsum()`
+
+-   `f3` is `any()`
+
+-   `f4` is `Position()` or `purrr::detect_index()`
+
+-   `f5` is `pmin()`
+
+> To practice your function writing skills, convert the following functions into C++. For now, assume the inputs have no missing values.
+>
+> 1.  [`all()`](https://rdrr.io/r/base/all.html).
+> 2.  [`cumprod()`](https://rdrr.io/r/base/cumsum.html), [`cummin()`](https://rdrr.io/r/base/cumsum.html), [`cummax()`](https://rdrr.io/r/base/cumsum.html).
+> 3.  [`diff()`](https://rdrr.io/r/base/diff.html). Start by assuming lag 1, and then generalize for lag `n`.
+> 4.  [`range()`](https://rdrr.io/r/base/range.html).
+> 5.  [`var()`](https://rdrr.io/r/stats/cor.html). Read about the approaches you can take on [Wikipedia](http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance). Whenever implementing a numerical algorithm, it's always good to check what is already known about the problem.
+
+```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+bool allC(LogicalVector x) {
+  int n = x.size();
+  
+  for (int i = 0; i < n; ++i) {
+    if (!x[i]) return(false);
+  }
+  return true;
+}
+
+// [[Rcpp::export]]
+NumericVector cumprodC(NumericVector x) {
+  int n = x.size();
+  NumericVector out(n);
+  
+  out[0] = x[0];
+  for (int i = 1; i < n; ++i) {
+    out[i] = out[i-1] * x[i];
+  }
+  return out;
+}
+
+// [[Rcpp::export]]
+NumericVector cumminC(NumericVector x) {
+  int n = x.size();
+  NumericVector out(n);
+  
+  out[0] = x[0];
+  for (int i = 1; i < n; ++i) {
+    out[i] = std::min(out[i-1], x[i]);
+  }
+  return out;
+}
+
+// [[Rcpp::export]]
+NumericVector cummaxC(NumericVector x) {
+  int n = x.size();
+  NumericVector out(n);
+  
+  out[0] = x[0];
+  for (int i = 1; i < n; ++i) {
+    out[i] = std::max(out[i-1], x[i]);
+  }
+  return out;
+}
+
+// [[Rcpp::export]]
+NumericVector diffC(NumericVector x, int lag) {
+  int n = x.size() - lag;
+  NumericVector out(n);
+  
+  if (lag < 1) stop("`lag` must be an integer >= 1");
+  
+  for (int i = 0; i < n; ++i) {
+    out[i] = x[i + lag] - x[i];
+  }
+  return out;
+}
+
+// [[Rcpp::export]]
+NumericVector rangeC(NumericVector x) {
+  int n = x.size();
+  double omin = x[0], omax = x[0];
+  
+  for (int i = 1; i < n; ++i) {
+    omin = std::min(omin, x[i]);
+    omax = std::max(omax, x[i]);
+  }
+  
+  NumericVector out(2);
+  out[0] = omin; out[1] = omax;
+  return out;
+  
+}
+
+// [[Rcpp::export]]
+double varC(NumericVector x) {
+  int n = x.size();
+  if (n < 2) return NA_REAL;
+  
+  double mu = 0;
+  for (int i = 0; i < n; ++i) mu += x[i];
+  mu /= n;
+  
+  double out = 0;
+  for (int i = 0; i < n; ++i) {
+    out += pow(x[i] - mu, 2);
+  }
+  
+  return out / (n - 1);
+
+}
+```
+
+## Standard Template Library
+
+> The real strength of C++ is revealed when you need to implement more complex algorithms. The standard template library (STL) provides a set of extremely useful data structures and algorithms.
+>
+> @wickham2019 [pp. ?]
+
+**Iterators**
+
+> Iterators are used extensively in the STL: many functions either accept or return iterators. They are the next step up from basic loops, abstracting away the details of the underlying data structure. Iterators have three main operators:
+>
+> 1.  Advance with `++`.
+>
+> 2.  Get the value they refer to, or **dereference**, with `*`.
+>
+> 3.  Compare with `==`.
+>
+> For example we could re-write our sum function using iterators:
+
+```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+double sum3(NumericVector x) {
+  double total = 0;
+  
+  NumericVector::iterator it;
+  for(it = x.begin(); it != x.end(); ++it) {
+    total += *it;
+  }
+  return total;
+}
+```
+
+> The main changes are in the for loop:
+>
+> -   We start at `x.begin()` and loop until we get to `x.end()`. A small optimization is to store the value of the end iterator so we don\'t need to look it up each time. This only saves about 2 ns per iteration, so it\'s only important when the calculations in the loop are very simple.
+>
+> -   Instead of indexing into x, we use the dereference operator to get its current value: `*it`.
+>
+> -   Notice the type of the iterator: `NumericVector::iterator`. Each vector type has its own iterator type: `LogicalVector::iterator`, `CharacterVector::iterator`, etc.
+
+**Data Structures**
+
+> The STL provides a large set of data structures: `array`, `bitset`, `list`, `forward_list`, `map`, `multimap`, `multiset`, `priority_queue`, `queue`, `deque`, `set`, `stack`, `unordered_map`, `unordered_set`, `unordered_multimap`, `unordered_multiset`, and `vector`. The most important of these data structures are the `vector`, the `unordered_set`, and the `unordered_map`.
+
+*Vectors*
+
+More...
