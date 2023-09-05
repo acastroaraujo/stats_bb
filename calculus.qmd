@@ -244,11 +244,7 @@ $$
 L = \frac{c-1}{c}
 $$
 
-<aside>
-
-Plug in $L$ for both $p_n$ and $p_{n+1}$ and solve for $L$.
-
-</aside>
+<aside>Plug in $L$ for both $p_n$ and $p_{n+1}$ and solve for $L$.</aside>
 
 *However, we don't know if the* $\lim_{n \to \infty} p_n$ *actually exists for all values of* $c$ *and* $p_o$ *(it doesn't).*
 
@@ -288,11 +284,7 @@ S_{n+1} &= S_n + r^{n+1}
 \end{align}
 $$
 
-<aside>
-
-Multiply $S_n$ by $r$ and add $1$ to get the first equation.
-
-</aside>
+<aside>Multiply $S_n$ by $r$ and add $1$ to get the first equation.</aside>
 
 As it turns out, the geometric sum converges if $|r| < 1$ and diverges if $|r| \geq 1$.
 
@@ -302,26 +294,16 @@ $$
 \lim_{j \to \infty} \sum_{j=0}^j r^j = \frac{1}{1-r}
 $$
 
-<aside>
-
-Remember to plug in $L$ for both $S_{n+1}$ and $S_n$.
-
-</aside>
-
-**Taylor Series**
-
-A smooth function $f$ can be approximated near any given point $x=a$ by
-
-$$
-y = \underbrace{f(a) + f^{(1)} (a) (x-a) + \frac{1}{2!}f^{(2)}(a)(x-a)^2}_{\text{quadratic approximation}} + \frac{1}{3!}f^{(3)}(a)(x-a)^3 + \dots
-$$ {#eq-taylor-series}
+<aside>Remember to plug in $L$ for both $S_{n+1}$ and $S_n$.</aside>
 
 ## Other
+
+### Euler's number
 
 Euler's number $e$ is defined in terms of a limit approaching infinity.
 
 $$
-e = \lim_{x \to \infty} \bigg( 1 + \frac{1}{x} \bigg)^x \approx 2.718282...
+e = \lim_{n \to \infty} \bigg( 1 + \frac{1}{n} \bigg)^n \approx 2.718282...
 $$
 
 We also call this a *horizontal asymptote.*
@@ -332,9 +314,136 @@ foo <- function(x) (1 + 1/x)^x
 ggplot() + 
   xlim(-5, 50) +
   coord_cartesian(ylim = c(0.5, 5)) +
-  labs(x = "x", y = "f(x)") +
+  labs(x = "n", y = "f(n)") +
   geom_function(fun = foo,  n = 1e3) + 
   geom_hline(yintercept = exp(1), linetype = "dashed")
 ```
 
-Note that the limit is undefined as $x \to 0$.
+Note that the limit is undefined as $n \to 0$.
+
+**Exponential functions**
+
+> Who has not been amazed to learn that the function $y=e^x$, like a phoenix rising again from its own ashes, is its own derivative?
+
+An exponential function has the form $f(x) = b^x$ where $b>0$ is constant called the **base** and $x$ sits in the **exponent**.
+
+The base $e=2.71828 \dots$ is called **Euler's number**.
+
+All exponential functions are proportional to their own derivatives, but $e$ alone is the special number for which this proportionality constant is $1$.
+
+For example, take the following function:
+
+$$
+\begin{align}
+M(t) = 2^t, && \lim_{h \to 0} M = \frac{\overbrace{2^t 2^{h}}^{2^{t + h}} - 2^t}{h} = 2^t \bigg( \frac{2^{h}-1}{h} \bigg) 
+\end{align}
+$$
+
+Here, the value $(2^h - 1) / h$ is a constant approximately equal to $0.6931472$.
+
+Thus, by definition, we have the following equation:
+
+$$
+\lim_{h \to 0} \frac{e^h - 1}{h} = 1
+$$
+
+And so, the derivative of $e^x$ turns out to be $e^x$ itself.
+
+$$
+\frac{d}{dx}e^x = e^x \cdot 1
+$$
+
+With this, we can use the chain rule to get the derivative of the more general form:
+
+$$
+\frac{d}{dt}e^{ct} = c \cdot e^{ct}
+$$
+
+Finally, we now have a way to express any proportionality constant in terms of generic natural logarithms (logarithms with base $e$), once we remember that $\log_e (x) = c$, so that $x = e^c$.
+
+$$
+\frac{d}{dt} 2^t = \frac{d}{dt} e^{\ln(2)t} = \ln(2) e^{\ln(2)t}
+$$
+
+The derivative of $2^t$ is itself multiplied by some proportionality constant equal to $\ln(2)$.
+
+```{r}
+log(2, base = exp(1))
+```
+
+### Taylor Series
+
+A smooth function $f$ can be approximated near any given point $x=a$ by
+
+$$
+y = \underbrace{\overbrace{f(a) + f^{(1)} (a) (x-a)}^\text{linear approximation} + \frac{1}{2!}f^{(2)}(a)(x-a)^2}_{\text{quadratic approximation}} + \frac{1}{3!}f^{(3)}(a)(x-a)^3 + \dots
+$$
+
+If we keep going, we end up with a **Taylor series** of $f$ centered at $a$:
+
+$$
+\sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!} (x - a)^n
+$$
+
+For example,the Taylor series of $e^x$ centered at $0$ is given by:
+
+$$
+e^x = \sum_{n = 0}^\infty \frac{x^n}{n!}
+$$
+
+```{r}
+exp_taylor_zero <- function(x, degree) {
+  
+  f <- purrr::map(0:degree, function(n) {
+    function(x) x^n / factorial(n)
+  })
+  
+  purrr::map_dbl(x, function(x) {
+    out <- vector("double", length(f))
+    for (i in seq_along(out)) out[[i]] <- f[[i]](x)
+    return(sum(out))
+  })
+}
+
+ggplot() + 
+  xlim(-2, 4) + 
+  geom_function(fun = exp, linewidth = 2) + 
+  geom_function(fun = \(x) exp_taylor_zero(x, degree = 1), aes(color = "1")) +
+  geom_function(fun = \(x) exp_taylor_zero(x, degree = 2), aes(color = "2")) +
+  geom_function(fun = \(x) exp_taylor_zero(x, degree = 3), aes(color = "3")) +
+  geom_function(fun = \(x) exp_taylor_zero(x, degree = 9), aes(color = "9")) + 
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(x = "x", y = expression(e^x), color = "degree")
+```
+
+### Limits
+
+$$
+\lim_{x \to a} f(x) = L
+$$ {#eq-limit}
+
+*How do we know if this limit exists?*
+
+If given $\epsilon > 0$ we can find $\delta > 0$ so that $0 < |x - a| < \delta$, this guarantees that $|f(x) - L| < \epsilon$. Thus, $f$ approaches $L$ as $x$ approaches $a$ and we write @eq-limit.
+
+This definition of a limit is absolutely necessary for making calculus rigorous.
+
+**Some Limit Theorems**
+
+*The constant rule.*
+
+$$
+\lim_{x \to a} \bigg[ c f(x) \bigg] = c \lim_{x \to a} \bigg[ f(x) \bigg]
+$$
+
+*The sum rule.*
+
+$$
+\lim_{x\to a} \bigg[ f(x) + g(x) \bigg] = \lim_{x\to a} \bigg[ f(x) \bigg] + \lim_{x\to a} \bigg[ g(x)\bigg]
+$$
+
+*The power rule.*
+
+$$
+\lim_{x \to a} x^n = a^n
+$$

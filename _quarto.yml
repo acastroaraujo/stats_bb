@@ -8,7 +8,9 @@ book:
   date: last-modified
   chapters:
     - index.qmd
-    - calculus.qmd
+    - part: calculus.qmd
+      chapters:
+        - calculus-de.qmd
     - part: prob.qmd
       chapters: 
         - prob-intro.qmd
@@ -36,8 +38,9 @@ bibliography: references.bib
 
 format:
   html:
-    theme: lumen
-    mainfont: Amiri
+    theme: cosmo
+    mainfont: Optima
+    code-fold: show
     monofont: Fira Code
     fontsize: 1em
 

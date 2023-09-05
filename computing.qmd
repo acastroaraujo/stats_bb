@@ -1,6 +1,96 @@
 ---
-title: "Computing"
+title: "Technical Computing"
 editor: visual
+engine: knitr
 ---
 
-Some remarks
+> Underneath, it's the 1970s, UNIX, and the command-line.
+>
+> Technical computing is deeply frustrating. And yet it's weirdly satisfying once you get to subdue the machine and get it to do your will.
+>
+> All of these tools are about controlling the process.
+
+<https://missing.csail.mit.edu/>
+
+**UNIX tools:**
+
+::: callout-note
+Windows:
+
+-   [git bash](https://git-scm.com/downloads)
+
+-   [cygwin](https://www.cygwin.com/)
+:::
+
+Error music video
+
+**Exercises:**
+
+-   unzip a docx file
+
+**The File System**
+
+copy picture of filing cbinet; copy picture of file system hierarchy
+
+::: grid
+::: g-col-6
+**Office Model**
+
+-   Formatted documents are real.
+
+-   Intermediate outputs are cut and pasted into documents.
+
+-   Changes are tracked inside files.
+
+-   Final output is often in the same format you've been working in, e.g. a Word file, or a PDF.
+:::
+
+::: g-col-6
+**Engineering model**
+
+-   Plain-text files are real.
+
+-   Intermediate outputs are produced via code, often inside documents.
+
+-   Changes are tracked outside files, at the level of a project.
+
+-   Final outputs are assembled programatically and converted to some desired format.
+:::
+:::
+
+**The Unix way of thinking**
+
+*Why is it good to think of things as a collection o files?*
+
+The Unix conception of a "file" is very flexible. Everything is a file---e.g., connections to other computers or processes can act like files.
+
+Unix commands are often *composable* using *pipes* (`|`)
+
+Navigating the tree.
+
+-   `whoami`: Who am I?
+
+-   `pwd`: Where am I?
+
+-   `ls`: What is in here?
+
+Other commands:
+
+-   Basic file-handling commands such as `cp` (copy), `mv` (move or rename), `rm` (remove or delete), and `chmod` (change file permissions)
+
+-   Basic file-viewing commands such as `cat` (view an entire file) and `less` (view one page at a time)
+
+-   Basic directory commands such as `cd` (change directory), ls (list files in a directory), `mkdir` (create directory), `rmdir` (remove directory), and `pwd` (display your current directory name)
+
+-   The basics of shell scripts: storing Linux commands in a file, making the file executable (with `chmod 755` or `chmod +x`), and running the file
+
+-   Viewing Linux's built-in documentation, known as manpages, with the `man` command (example: `man cat` displays documentation on the `cat` command)
+
+**Command Interpreter**
+
+A shell is an *interpreter*. It waits for commands. When you supply them, it does what you tell it.
+
+```{bash}
+echo "hello there"
+pwd
+```

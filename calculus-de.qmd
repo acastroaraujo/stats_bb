@@ -1,0 +1,64 @@
+---
+title: "Differential Equations"
+editor: visual
+---
+
+[Differential Equations](https://openstax.org/books/calculus-volume-2/pages/4-introduction)
+
+https://youtu.be/p_di4Zn4wz4
+
+## Introduction
+
+What are they?
+
+ODE and PDE
+
+We tend to use differential equations when it's easier to describe how things change over time than the value of things at specific times. In other words, we figure out functions based on information about their rate of changes. For example, in models of population growth we usually start with $dN/dt$ and then work backwards to find $N(t)$.
+
+### Growth
+
+**Exponential and Logistic growth.**
+
+In a population with **exponential growth***,* the rate of population increase ($dN/dt$) is proportional to the number of individuals at time $t$. We call this proportionality constant $k$.
+
+$$
+\frac{dN}{dt} = k N
+$$ {#eq-exp-growth-1}
+
+You can also think of $k$ as a sort of *per capita* growth rate, which becomes clear if we rearrange the terms such that
+
+$$
+k = \frac{dN/dt}{N}
+$$
+
+We can get the formula for $N(t)$ by rearranging @eq-exp-growth-1 and then integrating on both sides.
+
+$$
+\begin{align}
+\text{Step 1}: && \int \frac{1}{N}dN &= \int kdt \\\\
+\text{Step 2}: && \log(|N|) + c_1 &= kt + c_2 \\\\
+\text{Step 3}: && N &= e^{kt} C
+\end{align}
+$$
+
+Here, $C$ is a constant that also happens to equal $N(t = 0)$ or $N_0$.
+
+Thus, we get the following expression for exponential growth:
+
+$$
+N_t = e^{kt}N_0
+$$ {#eq-exp-growth-2}
+
+In a population with **logistic growth***,* a population's *per capita* growth rate gets smaller as population size approaches a maximum imposed by limited resources in the environment, known as the **carrying capacity** ($K$).
+
+$$
+\frac{dN}{dt} = k \Bigg(\frac{K-N}{K} \Bigg) N
+$$
+
+You can think of $k$ as the hypothetical growth rate at which the population would grow in the absence of the constraints imposed by the carrying capacity. In other words, when $N < K$, the expression $(K-N) / N$ represents the fraction of the carrying capacity that has not yet been "used up." Once $N = K$ the population growth becomes zero.
+
+Solving this differential equation is less straightforward, but we can derive the following equation using similar methods:
+
+$$
+N(t) = \frac{N_0 K}{(K- N_0) e^{-kt} + N_0}
+$$ {#eq-logistic-growth-2}
