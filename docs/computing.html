@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Building Blocks - Technical Computing</title>
+<title>Building Blocks - Computing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./computing-rcpp.html" rel="next">
+<link href="./computing-mptc.html" rel="next">
 <link href="./cm-visualizing.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -108,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./computing.html">Technical Computing</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./computing.html">Computing</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -264,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./computing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Technical Computing</span></a>
+ <span class="menu-text">Computing</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -272,8 +238,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./computing-mptc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modern Plain Text</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing-latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LaTeX Templates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./computing-rcpp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">RCPP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">RCPP</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Technical Computing</h1>
+<h1 class="title">Computing</h1>
 </div>
 
 
@@ -312,88 +290,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<blockquote class="blockquote">
-<p>Underneath, it’s the 1970s, UNIX, and the command-line.</p>
-<p>Technical computing is deeply frustrating. And yet it’s weirdly satisfying once you get to subdue the machine and get it to do your will.</p>
-<p>All of these tools are about controlling the process.</p>
-</blockquote>
-<p><a href="https://missing.csail.mit.edu/" class="uri">https://missing.csail.mit.edu/</a></p>
-<p><strong>UNIX tools:</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Windows:</p>
-<ul>
-<li><p><a href="https://git-scm.com/downloads">git bash</a></p></li>
-<li><p><a href="https://www.cygwin.com/">cygwin</a></p></li>
-</ul>
-</div>
-</div>
-<p>Error music video</p>
-<p><strong>Exercises:</strong></p>
-<ul>
-<li>unzip a docx file</li>
-</ul>
-<p><strong>The File System</strong></p>
-<p>copy picture of filing cbinet; copy picture of file system hierarchy</p>
-<div class="grid">
-<div class="g-col-6">
-<p><strong>Office Model</strong></p>
-<ul>
-<li><p>Formatted documents are real.</p></li>
-<li><p>Intermediate outputs are cut and pasted into documents.</p></li>
-<li><p>Changes are tracked inside files.</p></li>
-<li><p>Final output is often in the same format you’ve been working in, e.g.&nbsp;a Word file, or a PDF.</p></li>
-</ul>
-</div>
-<div class="g-col-6">
-<p><strong>Engineering model</strong></p>
-<ul>
-<li><p>Plain-text files are real.</p></li>
-<li><p>Intermediate outputs are produced via code, often inside documents.</p></li>
-<li><p>Changes are tracked outside files, at the level of a project.</p></li>
-<li><p>Final outputs are assembled programatically and converted to some desired format.</p></li>
-</ul>
-</div>
-</div>
-<p><strong>The Unix way of thinking</strong></p>
-<p><em>Why is it good to think of things as a collection o files?</em></p>
-<p>The Unix conception of a “file” is very flexible. Everything is a file—e.g., connections to other computers or processes can act like files.</p>
-<p>Unix commands are often <em>composable</em> using <em>pipes</em> (<code>|</code>)</p>
-<p>Navigating the tree.</p>
-<ul>
-<li><p><code>whoami</code>: Who am I?</p></li>
-<li><p><code>pwd</code>: Where am I?</p></li>
-<li><p><code>ls</code>: What is in here?</p></li>
-</ul>
-<p>Other commands:</p>
-<ul>
-<li><p>Basic file-handling commands such as <code>cp</code> (copy), <code>mv</code> (move or rename), <code>rm</code> (remove or delete), and <code>chmod</code> (change file permissions)</p></li>
-<li><p>Basic file-viewing commands such as <code>cat</code> (view an entire file) and <code>less</code> (view one page at a time)</p></li>
-<li><p>Basic directory commands such as <code>cd</code> (change directory), ls (list files in a directory), <code>mkdir</code> (create directory), <code>rmdir</code> (remove directory), and <code>pwd</code> (display your current directory name)</p></li>
-<li><p>The basics of shell scripts: storing Linux commands in a file, making the file executable (with <code>chmod 755</code> or <code>chmod +x</code>), and running the file</p></li>
-<li><p>Viewing Linux’s built-in documentation, known as manpages, with the <code>man</code> command (example: <code>man cat</code> displays documentation on the <code>cat</code> command)</p></li>
-</ul>
-<p><strong>Command Interpreter</strong></p>
-<p>A shell is an <em>interpreter</em>. It waits for commands. When you supply them, it does what you tell it.</p>
-<div class="cell">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"hello there"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>hello there
-/Users/acastroaraujo/Documents/Repositories/stats_bb</code></pre>
-</div>
-</div>
 
 
 
@@ -638,8 +534,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./computing-rcpp.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">RCPP</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./computing-mptc.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modern Plain Text</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -6,7 +6,7 @@ Probability
 
 :   *Given a data generating process, what are the properties of the outcomes?*
 
-**Statistical Inference**
+Statistical Inference
 
 :   *Given the outcomes, what can we say about the process that generated the data?*
 
@@ -38,7 +38,71 @@ The **Bayesian interpretation** takes a different direction. Here, we treat "ran
 
 Regardless of the ongoing controversy about its interpretation, probability was established as a mathematical theory by Kolmogorov in the early 20th century. And although the different interpretations seem incompatible, the *calculus of probability* applies equally well no matter which interpretation one prefers. Thus, probability is simply a mathematical tool that allows us allows us to quantify uncertainty and randomness in principled ways.
 
+## A Little Primer
+
+A **random variable** assigns a numerical value to each outcome of a random **event**.
+
+For example, let's suppose we flip a fair coin exactly two times. The set of all outcomes---or **sample space---**is thus:
+
+$$
+\Omega = \{HH, HT, TH, TT \}
+$$
+
+HH, HT, TH, TT are not random variables, but the *number* of heads observed in two flips *is* a random variable. Thus, we have:
+
+$$
+\begin{align}
+X(HH) &= 2, 
+&X(TH) &= 1, \\
+X(HT) &= 1, 
+&X(TT) &= 0 
+\end{align}
+$$
+
+More formally, a random variable, $X$, is a function from the sample space, $\Omega$, to some subset of $\mathbb R$.
+
+$$
+X : \Omega \longrightarrow \mathbb R
+$$
+
+We typically distinguish between two types of random variables. A *discrete*random variable takes on a finite (or *countably* *infinite*) number of different values, each occurring with some probability.
+
+Examples of countably infinite sets include the natural numbers $\mathbb N$ or the integers $\mathbb Z$.
+
+Any infinite set that can be put in an order so that we can list all of its elements one at a time is *countable*. The real numbers are not countably infinite, because there is no way we could list them all, even if we had an infinite amount of time.
+
+A *continuous* random can take an infinite number of possible values. Since the number of outcomes is *uncountable* for a continuous random variable, we need to take a different approach to how we compute its **probability distribution**.
+
+<aside>See: probability mass functions (discrete) and probability density functions (continuous).</aside>
+
+We can *summarize* probability distributions in many different ways. Here we focus on two summaries: expectations and variances.
+
+1.  **Expectation**
+
+$$
+\begin{align}
+E[X] &= \sum x \cdot \Pr(X = x) \\\\
+ &= \int x \cdot f(x) dx
+\end{align}
+$$
+
+Linearity of expectations
+
+...
+
+2.  **Variance**, which measures the spread of all outcomes away from the expected outcome.
+
+$$
+V[X] = E \Big[ \big(E - E[X] \big)^2 \Big] = E\Big[X^2\Big] - E \Big[ X \Big]^2
+$$
+
+**Conditional Probability**
+
+Up to the law of total expectation and the law of total variance.
+
 ## Extra
+
+> A discrete random variable can't be **uniformly** distributed on an infinite range. In fact no random variable, discrete or continuous, can be uniform on an infinite range. To have such a distribution would violate the rule that the sum of every probability must be 1. However, that doesn't rule out infinite ranges in general...
 
 file:///Users/acastroaraujo/Documents/Notes/Math/Probability.html
 
